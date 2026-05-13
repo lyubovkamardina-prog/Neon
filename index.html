@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OnNeon Calculator</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="icon-192.png">
+<meta name="theme-color" content="#f6f8fc">
+</head>
+<body>
+
+<div class="app">
+
+<header class="top glass">
+<div>
+<h1>OnNeon</h1>
+<p>Premium Neon Calculator</p>
+</div>
+
+<button id="resetBtn" class="secondaryBtn">Сбросить расчет</button>
+</header>
+
+<div class="layout">
+
+<section class="glass card">
+
+<div class="section">
+<div class="sectionTitle">Неон</div>
+<input id="neon" type="number" min="0" step="0.1" placeholder="Метраж неона">
+</div>
+
+<div class="section">
+<div class="sectionTitle">Подложка</div>
+<div class="grid2">
+<input id="width" type="number" min="0" placeholder="Ширина, см">
+<input id="height" type="number" min="0" placeholder="Высота, см">
+</div>
+</div>
+
+<div class="section">
+<div class="sectionTitle">Фрезеровка</div>
+<input id="milling" type="number" min="0" step="0.1" placeholder="Метры фрезеровки">
+</div>
+
+<div class="section">
+<div class="sectionTitle">Блок питания</div>
+
+<label class="checkRow">
+<input type="checkbox" id="outdoor">
+<span>Уличный БП</span>
+</label>
+
+<label class="checkRow">
+<input type="checkbox" id="manualPS">
+<span>Ручной режим</span>
+</label>
+
+<div id="manualPSBox" class="hidden mt12">
+<div class="grid3">
+<input id="psName" type="text" placeholder="Название БП">
+<input id="psPower" type="number" min="0" placeholder="Мощность">
+<input id="psPrice" type="number" min="0" placeholder="Стоимость">
+</div>
+</div>
+
+<div class="powerBox">
+<div class="powerTitle">Питание вывески</div>
+<div id="powerInfo"></div>
+</div>
+
+</div>
+
+<div class="section">
+<div class="sectionTitle">Провода</div>
+
+<label class="checkRow">
+<input type="checkbox" id="extraToggle">
+<span>Дополнительные провода</span>
+</label>
+
+<div id="extraWireBox" class="hidden mt12">
+<input id="extraWires" type="number" min="0" placeholder="Количество проводов">
+</div>
+
+</div>
+
+<div class="section">
+<div class="sectionTitle">Крепления</div>
+
+<label class="checkRow">
+<input type="checkbox" id="mounts" checked>
+<span>Добавить крепления (+200 ₽)</span>
+</label>
+
+</div>
+
+<div class="section">
+<div class="sectionTitle">Упаковка</div>
+
+<select id="packaging">
+<option value="0">Нет</option>
+<option value="100">Мини — 100 ₽</option>
+<option value="150">Средняя — 150 ₽</option>
+<option value="250">Большая — 250 ₽</option>
+<option value="manual">Вручную</option>
+</select>
+
+<div id="manualPackagingBox" class="hidden mt12">
+<input id="manualPackaging" type="number" min="0" placeholder="Стоимость упаковки">
+</div>
+
+<label class="checkRow mt12">
+<input type="checkbox" id="plywood">
+<span>Фанера</span>
+</label>
+
+<div id="plywoodInfo" class="plywoodInfo hidden"></div>
+
+</div>
+
+<div class="section">
+<div class="sectionTitle">Герметизация</div>
+
+<select id="sealing">
+<option value="0">Нет</option>
+<option value="500">Мини — 500 ₽</option>
+<option value="1000">Средняя — 1000 ₽</option>
+<option value="1500">Большая — 1500 ₽</option>
+</select>
+
+</div>
+
+<div class="section">
+<div class="sectionTitle">Доставка</div>
+<div class="grid2">
+<input id="deliveryMe" type="number" min="0" placeholder="До меня">
+<input id="deliveryClient" type="number" min="0" placeholder="До клиента">
+</div>
+</div>
+
+<div class="section">
+<div class="sectionTitle">Макет</div>
+<input id="design" type="number" min="0" placeholder="Стоимость макета">
+</div>
+
+<div class="section">
+<div class="sectionTitle">Допы</div>
+<div id="extras"></div>
+<button id="addExtraBtn" class="secondaryBtn" type="button">Добавить доп</button>
+</div>
+
+<div class="section">
+<div class="sectionTitle">Работа</div>
+
+<select id="workType">
+<option value="1.8">x1.8</option>
+<option value="1.9">x1.9</option>
+<option value="2">x2</option>
+<option value="2.1">x2.1</option>
+<option value="manual">Вручную</option>
+</select>
+
+<div id="manualWorkBox" class="hidden mt12">
+<input id="manualWork" type="number" min="0" placeholder="Стоимость работы">
+</div>
+
+</div>
+
+<div class="section">
+<div class="sectionTitle">Менеджер</div>
+
+<label class="checkRow">
+<input id="manager" type="checkbox">
+<span>Добавить 5% менеджеру</span>
+</label>
+
+</div>
+
+<button id="calcBtn" class="primaryBtn">Рассчитать</button>
+
+</section>
+
+<aside class="glass result hidden" id="result">
+
+<div class="summaryHead" id="toggleSummary">
+<div>
+<div class="muted">Себестоимость</div>
+<div class="summaryPrice" id="costBase">0 ₽</div>
+</div>
+<div class="muted">Детализация</div>
+</div>
+
+<div id="details" class="details open"></div>
+
+<div class="line">
+<span>Работа</span>
+<b id="workResult">0 ₽</b>
+</div>
+
+<div class="line">
+<span>Макет</span>
+<b id="designResult">0 ₽</b>
+</div>
+
+<div id="managerLine" class="line hidden">
+<span>Менеджер (5%)</span>
+<b id="managerResult">0 ₽</b>
+</div>
+
+<div class="total">
+<span>ИТОГ СБП</span>
+<b id="sbp">0 ₽</b>
+</div>
+
+<div class="total">
+<span>ИТОГ ЮР.ЛИЦО</span>
+<b id="legal">0 ₽</b>
+</div>
+
+</aside>
+
+</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
