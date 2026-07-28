@@ -104,7 +104,7 @@ const neonCost = reserve * 180
 const width = n($('width').value)
 const height = n($('height').value)
 
-const acrylic = width * height * 0.35
+const acrylic = width * height * 0.39
 
 const millingInput = n($('milling').value)
 const milling = millingInput > 0
