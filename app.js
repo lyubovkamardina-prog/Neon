@@ -164,7 +164,7 @@ document.querySelectorAll('.extraRow').forEach(row=>{
 extras += n(row.querySelector('.extraPrice').value)
 })
 
-const ads = 500
+const ads = 1250
 const gas = 400
 
 const base =
