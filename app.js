@@ -243,8 +243,33 @@ $('powerInfo').innerHTML = `
 `
 
 $('result').classList.remove('hidden')
+// строка для копирования в Google Таблицу
+window.lastExport = [
+new Date().toLocaleDateString('ru-RU'),
+neon, 
+reserve.toFixed(1),
+Math.round(neonCost),
+millingInput,
+Math.round(milling),
+`${width}×${height}`,
+Math.round(acrylic), 
+psData.category, 
+psData.power + 'W', 
+psPrice, wires, mounts, 
+packaging, 
+plywood ? Math.round(plywood) : 0, 
+sealing, deliveryMe, 
+deliveryClient, 
+design, extras, 
+Math.round(work), 
+Math.round(manager), 
+ads, 
+gas, 
+Math.round(base), 
+sbp, 
+legal
+].join(' ')
 }
-
 if('serviceWorker' in navigator){
 navigator.serviceWorker.register('./sw.js')
 }
