@@ -244,8 +244,10 @@ $('powerInfo').innerHTML = `
 
 $('result').classList.remove('hidden')
 // строка для копирования в Google Таблицу
-window.lastExport = [
-new Date().toLocaleDateString('ru-RU'),
+window.lastExport = [ 
+new Date().toLocaleDateString('ru-RU'), 
+$('client').value || '', 
+$('city').value || '', 
 neon, 
 reserve.toFixed(1),
 Math.round(neonCost),
