@@ -270,6 +270,14 @@ sbp,
 legal
 ].join(' ')
 }
+$('copyBtn').onclick = async () => { 
+if(!window.lastExport){
+alert('Сначала выполните расчет') 
+return 
+} 
+await navigator.clipboard.writeText(window.lastExport) 
+alert('Строка скопирована для Google Таблицы') 
+}
 if('serviceWorker' in navigator){
 navigator.serviceWorker.register('./sw.js')
 }
