@@ -268,7 +268,7 @@ gas,
 Math.round(base), 
 sbp, 
 legal
-].join(' ')
+].join('\t')
 }
 $('copyBtn').onclick = async () => { 
 if(!window.lastExport){
