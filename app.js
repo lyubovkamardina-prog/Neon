@@ -95,6 +95,14 @@ $('extras').appendChild(row)
 }
 
 $('calcBtn').onclick = ()=>{
+const updateMillingWarning = () => {
+  const meters = n($('milling').value)
+  const cost = meters > 0 ? Math.max(meters * 80, 500) : 0
+  $('millingWarning').style.display =
+    cost > 500 && cost < 750 ? 'block' : 'none'
+}
+
+$('milling').addEventListener('input', updateMillingWarning)  
 
 const neon = n($('neon').value)
 const reserve = neon * 1.1
