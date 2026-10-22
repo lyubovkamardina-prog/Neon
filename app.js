@@ -4,6 +4,14 @@ const $ = id => document.getElementById(id)
 function n(v){
 return Math.max(0, parseFloat(v || 0) || 0)
 }
+function updateMillingWarning() {
+  const meters = n($('milling').value)
+  const cost = meters > 0 ? Math.max(meters * 80, 500) : 0
+  $('millingWarning').style.display =
+    cost > 500 && cost < 750 ? 'block' : 'none'
+}
+
+$('milling').addEventListener('input', updateMillingWarning)
 
 function money(v){
 return Math.round(v).toLocaleString('ru-RU') + ' ₽'
@@ -95,14 +103,6 @@ $('extras').appendChild(row)
 }
 
 $('calcBtn').onclick = ()=>{
-const updateMillingWarning = () => {
-  const meters = n($('milling').value)
-  const cost = meters > 0 ? Math.max(meters * 80, 500) : 0
-  $('millingWarning').style.display =
-    cost > 500 && cost < 750 ? 'block' : 'none'
-}
-
-$('milling').addEventListener('input', updateMillingWarning)  
 
 const neon = n($('neon').value)
 const reserve = neon * 1.1
