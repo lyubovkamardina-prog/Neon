@@ -144,10 +144,7 @@ const height = n($('height').value)
 const acrylic = width * height * 0.39
 
 const millingInput = n($('milling').value)
-const milling = millingInput > 0
-? Math.max(millingInput * 80, 500)
-: 0
-
+const milling = Math.max(millingInput * 80, 750)
 let psData
 let psPrice = 0
 
