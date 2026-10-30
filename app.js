@@ -30,19 +30,48 @@ function signPower(m){
 return Math.round((m * 1.1) * 9)
 }
 
-function autoPS(m){
-if(m < 4.5) return {power:60, category:'Стандарт', price:500}
-if(m <= 7.5) return {power:100, category:'Стандарт', price:650}
-if(m <= 12.5) return {power:150, category:'Стандарт', price:700}
-if(m <= 15) return {power:200, category:'Стандарт', price:800}
-return {power:400, category:'Стандарт', price:1150}
+
+function autoPS(m) {
+  const requiredPower = m * 8 * 1.3
+
+  const blocks = [
+    { power: 38, category: 'Стандарт', price: 300 },
+    { power: 60, category: 'Стандарт', price: 350 },
+    { power: 100, category: 'Стандарт', price: 550 },
+    { power: 150, category: 'Стандарт', price: 680 },
+    { power: 200, category: 'Стандарт', price: 800 },
+    { power: 250, category: 'Стандарт', price: 950 },
+    { power: 400, category: 'Стандарт', price: 1200 }
+  ]
+
+  const suitable = blocks.find(block =>
+    block.power >= requiredPower &&
+    (block.power !== 400 || m <= 32.9)
+  )
+
+  return suitable || {
+    power: 0,
+    category: 'Недостаточно мощности',
+    price: 0
+  }
 }
 
-function outdoorPS(m){
-if(m <= 7.5) return {power:100, category:'Уличный', price:1070}
-if(m <= 12.5) return {power:150, category:'Уличный', price:1350}
-return {power:200, category:'Уличный', price:1600}
-}
+function outdoorPS(m) {
+  const requiredPower = m * 8 * 1.3
+
+  const blocks = [
+    { power: 30, category: 'Уличный', price: 450 },
+    { power: 60, category: 'Уличный', price: 750 },
+    { power: 100, category: 'Уличный', price: 1050 },
+    { power: 150, category: 'Уличный', price: 1300 },
+    { power: 200, category: 'Уличный', price: 1600 }
+  ]
+
+  return blocks.find(block => block.power >= requiredPower) || {
+    power: 0,
+    category: 'Недостаточно мощности',
+    price: 0
+  }
 
 function updatePlywood(){
 if(!$('plywood').checked){
