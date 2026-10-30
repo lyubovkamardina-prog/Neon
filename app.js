@@ -64,6 +64,7 @@ function outdoorPS(m) {
     category: 'Недостаточно мощности',
     price: 0
   }
+   }
 
 function updatePlywood(){
 if(!$('plywood').checked){
